@@ -19,17 +19,20 @@ WEEKS_AMOUNT = 53
 
 start_col = 6
 start_row = 5
-current_row = 5
+current_row = start_row
 
 groups = {}
 
 try:
-    while sheet.cell(current_row, start_col).value != "":
-        group_name = sheet.cell(current_row, start_col).value
+    while len(sheet.cell(current_row, start_col).value) != 0:
+        try:
+            group_name = sheet.cell(current_row, start_col).value
+        except IndexError:
+            break
         groups[group_name] = [None]*WEEKS_AMOUNT
 
         counter = 0
-        for current_col in range(start_col + 2, start_col + 53, 2):
+        for current_col in range(start_col + 2, start_col + WEEKS_AMOUNT, 2):
             groups[group_name][counter] = sheet.cell(current_row, current_col)
             counter += 1
         current_row += 2
