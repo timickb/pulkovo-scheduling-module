@@ -1,19 +1,30 @@
 import xlrd
 
+def parse_cell_text(text):
+    programs = []
+    
+
 wb = xlrd.open_workbook('data/year_plan.xlsx')
 sheet = wb.sheet_by_index(0)
 
+WEEKS_AMOUNT = 53
 
-startCol = 6
-startRow = 5
-currentRow = 5
+start_col = 6
+start_row = 5
+current_row = 5
 
-groups = []
+groups = {}
 
 try:
-    while sheet.cell(currentRow, startCol).value != "":
-        groups.append(sheet.cell(currentRow, startCol).value)
-        currentRow += 2
+    while sheet.cell(current_row, start_col).value != "":
+        group_name = sheet.cell(current_row, start_col).value
+        groups[group_name] = [None]*WEEKS_AMOUNT
+
+        counter = 0
+        for current_col in range(start_col + 2, start_col + 53, 2):
+            groups[group_name][counter] = sheet.cell(current_row, current_col)
+            counter += 1
+        current_row += 2
 except IndexError:
     pass
 
