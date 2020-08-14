@@ -1,8 +1,16 @@
 import xlrd
 
-def parse_cell_text(text):
-    programs = []
-    
+class Workshop:
+    def __init__(self, title, start_date, end_date, classroom):
+        self.title = title
+        self.start_date = start_date
+        self.end_date = end_date
+        self.classroom = classroom
+
+def parse_workshops(text):
+    result = []
+    return result
+
 
 wb = xlrd.open_workbook('data/year_plan.xlsx')
 sheet = wb.sheet_by_index(0)
