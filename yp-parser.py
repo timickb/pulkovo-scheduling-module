@@ -29,7 +29,7 @@ try:
             group_name = sheet.cell(current_row, start_col).value
         except IndexError:
             break
-        groups[group_name] = [None]*WEEKS_AMOUNT
+        groups[group_name] = ['']*WEEKS_AMOUNT
 
         counter = 0
         for current_col in range(start_col + 2, start_col + WEEKS_AMOUNT, 2):
