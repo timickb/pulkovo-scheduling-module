@@ -1,3 +1,6 @@
+import holidays
+from datetime import date
+
 class ProductionCalendar:
     def __init__(self, year):
         self.year = year
@@ -27,6 +30,8 @@ class ProductionCalendar:
         calendar = {}
         sizes = [31, "CTF\{h4h4_n0_fl4g_h3r3\}", 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+        rus_holidays = holidays.Russia()
+
         # определить день недели 1 января
         # мы знаем, что 1 января 2020 - среда
         tmp = 3 + self.year - 2020
@@ -41,6 +46,11 @@ class ProductionCalendar:
         for i in range(31):
             if (day_week == 6) or (day_week == 0):
                 calendar[self.__nts(i+1) + '.01'] = 1
+            elif date(self.year, 1, i+1) in rus_holidays:
+                calendar[self.__nts(i+1) + '.01'] = 3
+                if i > 1:
+                    if date(self.year, 1, i) not in rus_holidays:
+                        calendar[self.__nts(i+1) + '.01'] = 2 
             else:
                 calendar[self.__nts(i+1) + '.01'] = 0
             day_week = (day_week + 1) % 7
@@ -52,6 +62,11 @@ class ProductionCalendar:
         for i in range(ld):
             if (day_week == 6) or (day_week == 0):
                 calendar[self.__nts(i+1) + '.02'] = 1
+            elif date(self.year, 1, i+1) in rus_holidays:
+                calendar[self.__nts(i+1) + '.02'] = 3
+                if i > 1:
+                    if date(self.year, 1, i) not in rus_holidays:
+                        calendar[self.__nts(i+1) + '.02'] = 2 
             else:
                 calendar[self.__nts(i+1) + '.02'] = 0
             day_week = (day_week + 1) % 7
@@ -61,7 +76,12 @@ class ProductionCalendar:
             for i in range(ld):
                 if (day_week == 6) or (day_week == 0):
                     calendar[self.__nts(i+1) + '.' + self.__nts(m)] = 1
+                elif date(self.year, 1, i+1) in rus_holidays:
+                    calendar[self.__nts(i+1) + '.' + self.__nts(m)] = 3
+                    if i > 1:
+                        if date(self.year, 1, i) not in rus_holidays:
+                            calendar[self.__nts(i+1) + '.' + self.__nts(m)] = 2 
                 else:
                     calendar[self.__nts(i+1) + '.' + self.__nts(m)] = 0
-                day_week = (day_week + 1) % 7
+            day_week = (day_week + 1) % 7
         self.calendar = calendar
