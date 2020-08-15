@@ -9,9 +9,25 @@ class Parser:
         self.config = config
     
     def __parse_teacher_priority(self, text):
+        try:
+            return int(text)
+        except ValueError:
+            if text == "нет":
+                return -1
+            if text == "в рабочие смены":
+                return -2
+            return -3
         return 0
     
     def __parse_teacher_ability(self, text):
+        if text == "все темы":
+            return "all"
+        if (text.find("теоретические") >= 0) and (text.find("практические") < 0):
+            return "theory only"
+        if (text.find("теоретические") < 0) and (text.find("практические") >= 0):
+            return "practic only"
+        if text.find("за исключением") >= 0:
+            return []
         return 0
     
     def __parse_teacher_workplan(self, text):
