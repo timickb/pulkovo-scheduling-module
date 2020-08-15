@@ -33,7 +33,7 @@ try:
 
         counter = 0
         for current_col in range(start_col + 2, start_col + WEEKS_AMOUNT, 2):
-            groups[group_name][counter] = sheet.cell(current_row, current_col)
+            groups[group_name][counter] = sheet.cell(current_row, current_col).value
             counter += 1
         current_row += 2
 except IndexError:
