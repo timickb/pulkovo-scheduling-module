@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Годовой план-график</title>
 </head>
 <body>
     <div id="wrap">
         <div id="menu">
-            <a href="edit" class="menu-item">Редактировать</a>
-            <a href="newplan" class="menu-item">Создать новый план-график</a>
+            <a href="load" class="menu-item">Загрузить из файла</a>
+            <a href="makeClassrooms" class="menu-item">Распределить аудитории</a>
+            <a href="makeTeachers" class="menu-item">Распределить преподавателей</a>
         </div>
         <div id="content">
-            <table border=2 cellpadding=10>
+            <table>
                 <tr>
                     <td>Группа</td>
                     {% for n in range(1,54) %}
