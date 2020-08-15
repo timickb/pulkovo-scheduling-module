@@ -140,3 +140,4 @@ cython_debug/
 # other
 log/
 logs/
+test.py
