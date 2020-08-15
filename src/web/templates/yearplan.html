@@ -19,11 +19,13 @@
                         <td>week {{n}}</td>
                     {% endfor %}
                 </tr>
-                {% for i in range(groups_amount) %}
-                    <td>Группа</td>
-                    {% for n in range(1,54) %}
-                        <td>week {{n}}</td>
+                {% for key, value in data.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    {% for text in data[key] %}
+                        <td>{{ text }}</td>
                     {% endfor %}
+                </tr>
                 {% endfor %}
             </table>
         </div>

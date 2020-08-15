@@ -1,8 +1,9 @@
 import xlrd
 import sys
-from src.models.classroom import Classroom
-from src.models.program import StudyProgram
-from src.models.teacher import Teacher
+sys.path.insert(0, '../')
+from models.classroom import Classroom
+from models.program import StudyProgram
+from models.teacher import Teacher
 
 class Parser:
     def __init__(self, config):
